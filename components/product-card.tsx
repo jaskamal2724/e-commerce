@@ -4,9 +4,11 @@ import { Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import React from "react"
+import {  useUser } from "@clerk/nextjs"
 
 interface ProductCardProps {
-  id: string
+  id: number
   name: string
   price: number
   image: string
@@ -16,6 +18,34 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ id, name, price, image, category, rating, stock }: ProductCardProps) {
+
+  const {user}=useUser()
+
+  const addtocart=async(id:number, name:string, price:number, image:string, category:string, rating:number) => {
+
+    try {
+      const res = await fetch('/api/add_to_cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userid:user?.id,
+          productId: id,
+          name: name,
+          image:image,
+          category: category,
+          price: price,
+          quantity:1,
+          rating:rating,
+        })
+      });
+      if(res.status==200){
+        console.log("added to cart")
+      }
+    } catch (error) {
+      console.log("error adding to cart :", error)
+    }
+  }
+
   return (
     <Card className="overflow-hidden group transition-all duration-300 hover:shadow-lg border border-border/50 h-[550px] w-[300px]">
       <Link href={`/products/${id}`} className="relative block overflow-hidden">
@@ -65,7 +95,7 @@ export default function ProductCard({ id, name, price, image, category, rating, 
       </CardContent>
       <CardFooter className="p-4 pt-0 flex items-center justify-between">
         <div className="font-medium text-lg">Rs. {price.toFixed(2)}</div>
-        <Button size="sm" className="rounded-full w-9 h-9 p-0 bg-primary hover:bg-primary/90">
+        <Button size="sm" className="rounded-full w-9 h-9 p-0 bg-blue-400 hover:bg-primary/90" onClick={()=>addtocart(id, name, price, image, category, rating)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

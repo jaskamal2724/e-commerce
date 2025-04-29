@@ -2,15 +2,17 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import { useSignUp } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
+import axios from "axios";
 
 export default function ChooseRole() {
   const router = useRouter();
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
-  const { signUp, isLoaded } = useSignUp();
+
+  const { user } = useUser();
 
   const handleRoleSelect = (role: string) => {
+    console.log(user);
     setSelectedRole(role);
   };
 
@@ -20,16 +22,17 @@ export default function ChooseRole() {
       return;
     }
 
-    await signUp?.update({
-      unsafeMetadata: {
-        role: selectedRole,
-      },
-    });
-    // Redirect based on role
-    if (selectedRole === "buyer") {
-      router.replace("/home");
-    } else {
-      router.replace("/seller");
+    try {
+      const response = await axios.post("/api/setrole", { role: selectedRole });
+      if (response.status == 200) {
+        if (selectedRole === "buyer") {
+          router.replace("/home");
+        } else {
+          router.replace("/seller");
+        }
+      }
+    } catch (error) {
+      console.log("error in setting role ", error)
     }
   };
 

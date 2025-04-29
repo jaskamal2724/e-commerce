@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 
@@ -180,7 +179,6 @@ const MOCK_ORDERS: Order[] = [
 ];
 
 export default function SellerDashboard() {
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState("overview");
   const [products, setProducts] = useState<Product[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -211,7 +209,7 @@ export default function SellerDashboard() {
     setProducts(MOCK_PRODUCTS);
     setReviews(MOCK_REVIEWS);
     setOrders(MOCK_ORDERS);
-  }, []);
+  }, [filterCategory]);
 
   // Calculate dashboard stats
   useEffect(() => {

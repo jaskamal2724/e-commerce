@@ -9,9 +9,7 @@ import NewsletterForm from "@/components/newsletter-form";
 import HeroAnimation from "@/components/hero-animation";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { SignInButton } from "@clerk/nextjs";
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
-import { prisma } from "@/lib/prisma";
+import { SignedIn, UserButton } from "@clerk/clerk-react";
 import { useRouter } from "next/navigation";
 
 interface FeaturedProducts {
@@ -81,7 +79,7 @@ export default function Home() {
     return () => {
       document.documentElement.style.scrollBehavior = "auto";
     };
-  }, []);
+  }, [featuredProducts]);
 
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-blue-50 to-purple-50 dark:from-gray-900 dark:to-slate-900">
@@ -281,7 +279,7 @@ export default function Home() {
               {featuredProducts.map((item) => (
                 <div key={item.id}>
                   <ProductCard
-                    id={item.id.toString()}
+                    id={item.id}
                     name={item.name}
                     price={item.price}
                     image={item.image}

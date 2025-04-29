@@ -30,9 +30,13 @@ const page = () => {
     }
   };
 
+  const addtocart=async () => {
+    
+  }
+
   useEffect(() => {
     products();
-  }, []);
+  }, [name]);
 
   return (
     <>
@@ -70,7 +74,7 @@ const page = () => {
         {Products.map((item) => (
           <div key={item.id}>
             <ProductCard
-              id={item.id.toString()}
+              id={item.id}
               name={item.name}
               price={item.price}
               image={item.image}

@@ -36,3 +36,15 @@ model Category {
   image     String
   itemCount Int
 }
+
+model Cart {
+  id         Int    @id @default(autoincrement())
+  userid     String
+  productId  Int
+  name       String
+  price      Int
+  image      String
+  category   String
+  rating     Float
+  quantity   Int
+}

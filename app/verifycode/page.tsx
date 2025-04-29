@@ -3,7 +3,6 @@ import React, { SetStateAction, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSignUp } from "@clerk/nextjs";
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
 
 export default function VerifyEmailPage() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -33,29 +32,6 @@ export default function VerifyEmailPage() {
       });
       if (result.status === "complete") {
         console.log(result);
-
-        const metadata = result.unsafeMetadata;
-
-        await fetch("/api/save_user_to_db", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            clerkid: result.id,
-            email: result.emailAddress,
-            name: metadata.name,
-            phone: metadata.phone,
-            address: metadata.address,
-            pincode: metadata.pincode,
-            city: metadata.city,
-          }),
-        });
-
-        // After saving user, clear unsafeMetadata
-        await signUp.update({
-          unsafeMetadata: {},
-        });
 
         // Set the session as active
         await setActive({ session: result.createdSessionId });

@@ -29,7 +29,7 @@ const page = () => {
 
   useEffect(()=>{
     categories()
-  },[])
+  },[category])
 
   return (
     <>
