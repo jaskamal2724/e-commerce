@@ -36,7 +36,7 @@ const page = () => {
 
   useEffect(() => {
     products();
-  }, [name]);
+  }, []);
 
   return (
     <>

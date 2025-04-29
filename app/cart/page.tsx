@@ -61,7 +61,7 @@ export default function CartPage() {
 
   useEffect(() => {
     getcart();
-  }, [handleRemove]);
+  }, []);
 
   return (
     <div className="max-w-4xl mx-auto p-6">

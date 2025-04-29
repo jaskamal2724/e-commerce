@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import { useRouter } from "next/navigation";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 
 // Type definitions
@@ -209,7 +208,7 @@ export default function SellerDashboard() {
     setProducts(MOCK_PRODUCTS);
     setReviews(MOCK_REVIEWS);
     setOrders(MOCK_ORDERS);
-  }, [filterCategory]);
+  }, []);
 
   // Calculate dashboard stats
   useEffect(() => {
@@ -239,7 +238,7 @@ export default function SellerDashboard() {
         totalRevenue,
       });
     }
-  }, [products]);
+  }, []);
 
   // Filter products based on category and search term
   const filteredProducts = products.filter((product) => {
