@@ -30,13 +30,11 @@ const page = () => {
     }
   };
 
-  const addtocart=async () => {
-    
-  }
+  const a="hi";
 
   useEffect(() => {
     products();
-  }, []);
+  }, [a]);
 
   return (
     <>

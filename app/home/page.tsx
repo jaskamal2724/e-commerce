@@ -70,6 +70,8 @@ export default function Home() {
     }
   };
 
+  const a="hi";
+
   useEffect(() => {
     // Add smooth scrolling behavior
     products();
@@ -79,7 +81,7 @@ export default function Home() {
     return () => {
       document.documentElement.style.scrollBehavior = "auto";
     };
-  }, []);
+  }, [a]);
 
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-blue-50 to-purple-50 dark:from-gray-900 dark:to-slate-900">

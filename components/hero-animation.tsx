@@ -7,9 +7,11 @@ import { motion } from "framer-motion";
 export default function HeroAnimation() {
   const [mounted, setMounted] = useState(false);
 
+  const a="hi";
+
   useEffect(() => {
     setMounted(true);
-  }, []);
+  }, [a]);
 
   if (!mounted) {
     return (

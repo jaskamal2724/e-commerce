@@ -27,9 +27,11 @@ const page = () => {
     }
   }
 
+  const a="hi";
+
   useEffect(()=>{
     categories()
-  },[])
+  },[a])
 
   return (
     <>

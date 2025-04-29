@@ -203,12 +203,14 @@ export default function SellerDashboard() {
     category: "Electronics",
   });
 
+  const a="hi";
+
   // Load mock data
   useEffect(() => {
     setProducts(MOCK_PRODUCTS);
     setReviews(MOCK_REVIEWS);
     setOrders(MOCK_ORDERS);
-  }, []);
+  }, [a]);
 
   // Calculate dashboard stats
   useEffect(() => {
@@ -238,7 +240,7 @@ export default function SellerDashboard() {
         totalRevenue,
       });
     }
-  }, []);
+  }, [a]);
 
   // Filter products based on category and search term
   const filteredProducts = products.filter((product) => {
