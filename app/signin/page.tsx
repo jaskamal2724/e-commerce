@@ -34,7 +34,7 @@ export default function SignIn() {
   };
 
   const validateForm = (): boolean => {
-    let tempErrors: SignInFormErrors = {};
+    const tempErrors: SignInFormErrors = {};
     let isValid = true;
 
     if (!formData.email.trim()) {

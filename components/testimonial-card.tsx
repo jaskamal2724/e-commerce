@@ -35,7 +35,7 @@ export default function TestimonialCard({ name, avatar, rating, text }: Testimon
             </div>
           </div>
         </div>
-        <p className="text-muted-foreground italic">"{text}"</p>
+        <p className="text-muted-foreground italic">{text}</p>
       </CardContent>
     </Card>
   )

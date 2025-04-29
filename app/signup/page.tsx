@@ -30,7 +30,7 @@ interface FormErrors {
 }
 
 export default function SignUp() {
-  const { isLoaded, signUp, setActive } = useSignUp();
+  const { isLoaded, signUp, } = useSignUp();
   const router = useRouter();
   const [formData, setFormData] = useState<SignUpFormData>({
     name: "",
@@ -55,7 +55,7 @@ export default function SignUp() {
   };
 
   const validateForm = (): boolean => {
-    let tempErrors: FormErrors = {};
+    const tempErrors: FormErrors = {};
     let isValid = true;
 
     if (!formData.name.trim()) {

@@ -13,7 +13,7 @@ interface Category{
   itemCount:number,
 }
 
-const page = () => {
+const Page = () => {
   const [category, setCategory]=useState<Category[]>([])
 
   const categories=async () => {
@@ -88,4 +88,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

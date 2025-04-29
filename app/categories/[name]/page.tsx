@@ -17,7 +17,7 @@ interface Products {
   stock: number;
 }
 
-const page = () => {
+const Page = () => {
   const [Products, setProducts] = useState<Products[]>([]);
 
   const { name } = useParams();
@@ -87,4 +87,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -3,9 +3,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ShoppingBasket, ArrowRight, Store, ShoppingCart } from "lucide-react";
-import { SignInButton } from "@clerk/nextjs";
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { useRouter } from "next/navigation"
 
 export default function Home() {
@@ -79,7 +76,7 @@ export default function Home() {
                 <div className="h-16 w-16 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center mb-4">
                   <ShoppingCart className="h-8 w-8 text-green-600 dark:text-green-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">I'm a Buyer</h3>
+                <h3 className="text-xl font-semibold mb-2">I&apos;m a Buyer</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-center mb-4">
                   Discover products and shop from verified sellers
                 </p>
@@ -104,7 +101,7 @@ export default function Home() {
                 <div className="h-16 w-16 rounded-full bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center mb-4">
                   <Store className="h-8 w-8 text-teal-600 dark:text-teal-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">I'm a Seller</h3>
+                <h3 className="text-xl font-semibold mb-2">I&apos;m a Seller</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-center mb-4">
                   List your products and reach customers worldwide
                 </p>
