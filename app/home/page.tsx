@@ -133,7 +133,7 @@ export default function Home() {
                 <UserButton />
               </SignedIn>
             </div>
-            <Button className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white border-0 shadow-md shadow-purple-200 dark:shadow-purple-900/20">
+            <Button onClick={()=>router.push("/cart")} className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white border-0 shadow-md shadow-purple-200 dark:shadow-purple-900/20">
               <ShoppingBag className="mr-2 h-4 w-4" />
               Cart (0)
             </Button>

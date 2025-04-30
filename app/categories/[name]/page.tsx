@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { SignedOut, SignInButton, SignedIn, UserButton } from "@clerk/nextjs";
 import axios from "axios";
 import { ShoppingBag } from "lucide-react";
-import { useParams } from "next/navigation";
+import { routeModule } from "next/dist/build/templates/pages";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 interface Products {
@@ -19,7 +20,7 @@ interface Products {
 
 const Page = () => {
   const [Products, setProducts] = useState<Products[]>([]);
-
+  const router = useRouter()
   const { name } = useParams();
   const products = async () => {
     try {
@@ -43,7 +44,7 @@ const Page = () => {
           <div className="flex items-center gap-2">
             <ShoppingBag className="h-6 w-6 text-purple-600 dark:text-purple-400" />
             <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-400 dark:to-pink-400 text-transparent bg-clip-text">
-              ShopVibe
+            <button onClick={()=>router.push("/home")} className="cursor-pointer">Quick Basket</button>
             </span>
           </div>
 
@@ -56,7 +57,7 @@ const Page = () => {
                 <UserButton />
               </SignedIn>
             </div>
-            <Button className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white border-0 shadow-md shadow-purple-200 dark:shadow-purple-900/20">
+            <Button onClick={()=>router.push("/cart")} className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white border-0 shadow-md shadow-purple-200 dark:shadow-purple-900/20">
               <ShoppingBag className="mr-2 h-4 w-4" />
               Cart (0)
             </Button>

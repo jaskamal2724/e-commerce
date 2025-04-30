@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useRouter } from "next/navigation"
 import Link from 'next/link';
 import Head from 'next/head';
+import { useSignIn, useUser } from '@clerk/nextjs';
 
 // Define interface for form data
 interface SignInFormData {
@@ -19,6 +20,8 @@ interface SignInFormErrors {
 
 export default function SignIn() {
   const router = useRouter();
+  const { isLoaded, signIn, setActive } = useSignIn();
+  const {user}=useUser()
   const [formData, setFormData] = useState<SignInFormData>({
     email: '',
     password: ''
@@ -54,29 +57,25 @@ export default function SignIn() {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!isLoaded) return;
     if (validateForm()) {
       try {
-        // For demo purposes only - this is not secure and just for illustration
-        const storedDataString = localStorage.getItem('userData');
-        
-        if (!storedDataString) {
-          setErrors({ general: "No user found. Please sign up first." });
-          return;
-        }
-        
-        const storedData = JSON.parse(storedDataString) as SignInFormData;
-        
-        if (storedData.email === formData.email && storedData.password === formData.password) {
-          alert("Login successful!");
-          router.push('/home'); // Redirect to home page
-        } else {
-          setErrors({ general: "Invalid email or password" });
-        }
-      } catch (error) {
-        console.error("Error during login:", error);
-        setErrors({ general: "An error occurred during sign in" });
+        // Attempt sign-in with email and password
+        const result = await signIn.create({
+          identifier: formData.email,
+          password: formData.password,
+        });
+  
+        if (result.status === 'complete') {
+          await setActive({ session: result.createdSessionId });
+          // Redirect or show success
+          console.log('Signed in successfully!');
+          router.push("/loading")
+        } 
+      } catch (err) {
+        console.log("sign in error ", err)
       }
     }
   };
