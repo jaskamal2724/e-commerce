@@ -21,7 +21,7 @@ interface SignInFormErrors {
 export default function SignIn() {
   const router = useRouter();
   const { isLoaded, signIn, setActive } = useSignIn();
-  const {user}=useUser()
+  // const {user}=useUser()
   const [formData, setFormData] = useState<SignInFormData>({
     email: '',
     password: ''

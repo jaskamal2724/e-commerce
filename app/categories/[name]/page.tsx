@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { SignedOut, SignInButton, SignedIn, UserButton } from "@clerk/nextjs";
 import axios from "axios";
 import { ShoppingBag } from "lucide-react";
-import { routeModule } from "next/dist/build/templates/pages";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
