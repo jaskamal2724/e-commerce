@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useRouter } from "next/navigation"
 import Link from 'next/link';
 import Head from 'next/head';
-import { useSignIn, useUser } from '@clerk/nextjs';
+import { useSignIn } from '@clerk/nextjs';
 
 // Define interface for form data
 interface SignInFormData {
